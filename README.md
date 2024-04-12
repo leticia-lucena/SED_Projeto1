@@ -15,7 +15,7 @@ Lógica de controle que prioriza a segurança e eficiência, evitando colisões 
 Adaptação a diferentes fluxos de tráfego com base em dois estados principais: Horário de Pico e Horário Normal.
 
 ## Documentação
-A documentação detalhada do projeto pode ser encontrada no link:
+A documentação detalhada do projeto pode ser encontrada anexa a esse repositório.
 
 ## Demonstração
-O vídeo de demonstração do projeto pode ser encontrado no link:
+O vídeo de demonstração do projeto pode ser encontrado no link: https://youtu.be/1_88AoYIR0I
