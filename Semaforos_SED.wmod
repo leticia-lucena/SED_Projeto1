@@ -1,0 +1,860 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<Module xmlns="http://waters.sourceforge.net/xsd/module" xmlns:B="http://waters.sourceforge.net/xsd/base" Name="Semaforos_SED">
+<EventDeclList>
+<EventDecl Kind="CONTROLLABLE" Name="t_vt_vd"/>
+<EventDecl Kind="CONTROLLABLE" Name="t_vd_am"/>
+<EventDecl Kind="CONTROLLABLE" Name="t_am_vt"/>
+<EventDecl Kind="CONTROLLABLE" Name="t_vt_vm"/>
+<EventDecl Kind="PROPOSITION" Name=":accepting"/>
+<EventDecl Kind="UNCONTROLLABLE" Name="botao_pedestre"/>
+</EventDeclList>
+<ComponentList>
+<SimpleComponent Kind="PLANT" Name="Semaforo_1">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="Vermelho_Todos">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="80" Y="16"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="-70" Y="-35"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="Verde_Veiculos_1">
+<PointGeometry>
+<Point X="304" Y="16"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="-29" Y="-26"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="Amarelo_Veiculos_1">
+<PointGeometry>
+<Point X="304" Y="192"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="Vermelho_Veiculos_1">
+<PointGeometry>
+<Point X="80" Y="192"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="-131" Y="-17"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="Verde_Veiculos_1" Target="Amarelo_Veiculos_1">
+<LabelBlock>
+<SimpleIdentifier Name="t_vd_am"/>
+<LabelGeometry Anchor="NW">
+<Point X="3" Y="-9"/>
+</LabelGeometry>
+</LabelBlock>
+<GuardActionBlock>
+<Guards>
+<BinaryExpression Operator="==">
+<SimpleIdentifier Name="controle_vermelho"/>
+<IntConstant Value="0"/>
+</BinaryExpression>
+</Guards>
+<Actions>
+<BinaryExpression Operator="=">
+<SimpleIdentifier Name="controle_vermelho"/>
+<IntConstant Value="1"/>
+</BinaryExpression>
+</Actions>
+<LabelGeometry Anchor="NW">
+<Point X="1" Y="-43"/>
+</LabelGeometry>
+</GuardActionBlock>
+</Edge>
+<Edge Source="Amarelo_Veiculos_1" Target="Vermelho_Todos">
+<LabelBlock>
+<SimpleIdentifier Name="t_am_vt"/>
+<LabelGeometry Anchor="NW">
+<Point X="-17" Y="-35"/>
+</LabelGeometry>
+</LabelBlock>
+<GuardActionBlock>
+<Guards>
+<BinaryExpression Operator="==">
+<SimpleIdentifier Name="controle_vermelho"/>
+<IntConstant Value="1"/>
+</BinaryExpression>
+</Guards>
+<Actions>
+<BinaryExpression Operator="=">
+<SimpleIdentifier Name="controle_vermelho"/>
+<IntConstant Value="0"/>
+</BinaryExpression>
+</Actions>
+<LabelGeometry Anchor="NW">
+<Point X="-33" Y="-66"/>
+</LabelGeometry>
+</GuardActionBlock>
+</Edge>
+<Edge Source="Vermelho_Todos" Target="Vermelho_Veiculos_1">
+<LabelBlock>
+<SimpleIdentifier Name="t_vt_vm"/>
+<LabelGeometry Anchor="NW">
+<Point X="-47" Y="-8"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="40" Y="107"/>
+</SplineGeometry>
+<GuardActionBlock>
+<Guards>
+<BinaryExpression Operator="==">
+<SimpleIdentifier Name="cont"/>
+<IntConstant Value="1"/>
+</BinaryExpression>
+</Guards>
+<Actions>
+<BinaryExpression Operator="=">
+<SimpleIdentifier Name="cont"/>
+<IntConstant Value="0"/>
+</BinaryExpression>
+</Actions>
+<LabelGeometry Anchor="NW">
+<Point X="-46" Y="12"/>
+</LabelGeometry>
+</GuardActionBlock>
+</Edge>
+<Edge Source="Vermelho_Veiculos_1" Target="Vermelho_Todos">
+<LabelBlock>
+<SimpleIdentifier Name="t_am_vt"/>
+<LabelGeometry Anchor="NW">
+<Point X="2" Y="0"/>
+</LabelGeometry>
+</LabelBlock>
+<GuardActionBlock>
+<Guards>
+<BinaryExpression Operator="==">
+<SimpleIdentifier Name="controle_vermelho"/>
+<IntConstant Value="1"/>
+</BinaryExpression>
+</Guards>
+<Actions>
+<BinaryExpression Operator="=">
+<SimpleIdentifier Name="controle_vermelho"/>
+<IntConstant Value="0"/>
+</BinaryExpression>
+</Actions>
+<LabelGeometry Anchor="NW">
+<Point X="4" Y="20"/>
+</LabelGeometry>
+</GuardActionBlock>
+</Edge>
+<Edge Source="Vermelho_Todos" Target="Verde_Veiculos_1">
+<LabelBlock>
+<SimpleIdentifier Name="t_vt_vd"/>
+<LabelGeometry Anchor="NW">
+<Point X="-21" Y="-26"/>
+</LabelGeometry>
+</LabelBlock>
+<GuardActionBlock>
+<Guards>
+<BinaryExpression Operator="==">
+<SimpleIdentifier Name="cont"/>
+<IntConstant Value="0"/>
+</BinaryExpression>
+</Guards>
+<Actions>
+<BinaryExpression Operator="=">
+<SimpleIdentifier Name="cont"/>
+<IntConstant Value="1"/>
+</BinaryExpression>
+</Actions>
+<LabelGeometry Anchor="NW">
+<Point X="28" Y="-40"/>
+</LabelGeometry>
+</GuardActionBlock>
+</Edge>
+<Edge Source="Verde_Veiculos_1" Target="Amarelo_Veiculos_1">
+<LabelBlock>
+<SimpleIdentifier Name="botao_pedestre"/>
+<LabelGeometry Anchor="NW">
+<Point X="8" Y="-14"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="471" Y="92"/>
+</SplineGeometry>
+<GuardActionBlock>
+<Actions>
+<BinaryExpression Operator="=">
+<SimpleIdentifier Name="controle_vermelho"/>
+<IntConstant Value="1"/>
+</BinaryExpression>
+</Actions>
+<LabelGeometry Anchor="NW">
+<Point X="9" Y="4"/>
+</LabelGeometry>
+</GuardActionBlock>
+</Edge>
+<Edge Source="Vermelho_Veiculos_1" Target="Vermelho_Veiculos_1">
+<LabelBlock>
+<SimpleIdentifier Name="t_vd_am"/>
+<LabelGeometry Anchor="NW">
+<Point X="-58" Y="-4"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="38" Y="211"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="Vermelho_Veiculos_1" Target="Vermelho_Veiculos_1">
+<LabelBlock>
+<SimpleIdentifier Name="botao_pedestre"/>
+<LabelGeometry Anchor="NW">
+<Point X="4" Y="-7"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="121" Y="211"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="PLANT" Name="Semaforo_Pedestre_1">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="Vermelho_Pedestres">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="144" Y="128"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="-131" Y="-33"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="Verde_Pedestres">
+<PointGeometry>
+<Point X="336" Y="128"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="13" Y="-7"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="Vermelho_Pedestres" Target="Verde_Pedestres">
+<LabelBlock>
+<SimpleIdentifier Name="t_vt_vm"/>
+<LabelGeometry Anchor="NW">
+<Point X="-22" Y="-22"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="240" Y="112"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="Verde_Pedestres" Target="Vermelho_Pedestres">
+<LabelBlock>
+<SimpleIdentifier Name="t_am_vt"/>
+<LabelGeometry Anchor="NW">
+<Point X="-26" Y="5"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="240" Y="144"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="Vermelho_Pedestres" Target="Vermelho_Pedestres">
+<LabelBlock>
+<SimpleIdentifier Name="t_vt_vd"/>
+<LabelGeometry Anchor="NW">
+<Point X="-22" Y="6"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="145" Y="182"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="Vermelho_Pedestres" Target="Vermelho_Pedestres">
+<LabelBlock>
+<SimpleIdentifier Name="t_am_vt"/>
+<LabelGeometry Anchor="NW">
+<Point X="-25" Y="-21"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="150" Y="75"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="Vermelho_Pedestres" Target="Vermelho_Pedestres">
+<LabelBlock>
+<SimpleIdentifier Name="botao_pedestre"/>
+<LabelGeometry Anchor="NW">
+<Point X="-87" Y="5"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="87" Y="141"/>
+</SplineGeometry>
+<GuardActionBlock>
+<Actions>
+<BinaryExpression Operator="=">
+<SimpleIdentifier Name="controle_vermelho"/>
+<IntConstant Value="1"/>
+</BinaryExpression>
+</Actions>
+<LabelGeometry Anchor="NW">
+<Point X="-94" Y="23"/>
+</LabelGeometry>
+</GuardActionBlock>
+</Edge>
+<Edge Source="Verde_Pedestres" Target="Verde_Pedestres">
+<LabelBlock>
+<SimpleIdentifier Name="botao_pedestre"/>
+<LabelGeometry Anchor="NW">
+<Point X="8" Y="-16"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="347" Y="81"/>
+</SplineGeometry>
+<GuardActionBlock>
+<Actions>
+<BinaryExpression Operator="=">
+<SimpleIdentifier Name="controle_vermelho"/>
+<IntConstant Value="1"/>
+</BinaryExpression>
+</Actions>
+<LabelGeometry Anchor="NW">
+<Point X="17" Y="0"/>
+</LabelGeometry>
+</GuardActionBlock>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="PLANT" Name="Semaforo_2">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="Vermelho_Todos">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="96" Y="64"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="-85" Y="-34"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="Vermelho_Veiculos_2">
+<PointGeometry>
+<Point X="272" Y="64"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="26"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="Amarelo_Veiculos_2">
+<PointGeometry>
+<Point X="272" Y="192"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="Verde_Veiculos_2">
+<PointGeometry>
+<Point X="96" Y="192"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="-103" Y="7"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="Vermelho_Todos" Target="Vermelho_Veiculos_2">
+<LabelBlock>
+<SimpleIdentifier Name="t_vt_vd"/>
+<LabelGeometry Anchor="NW">
+<Point X="-22" Y="-22"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="181" Y="30"/>
+</SplineGeometry>
+<GuardActionBlock>
+<Guards>
+<BinaryExpression Operator="==">
+<SimpleIdentifier Name="cont"/>
+<IntConstant Value="0"/>
+</BinaryExpression>
+</Guards>
+<Actions>
+<BinaryExpression Operator="=">
+<SimpleIdentifier Name="cont"/>
+<IntConstant Value="1"/>
+</BinaryExpression>
+</Actions>
+<LabelGeometry Anchor="NW">
+<Point X="-19" Y="-53"/>
+</LabelGeometry>
+</GuardActionBlock>
+</Edge>
+<Edge Source="Vermelho_Veiculos_2" Target="Vermelho_Todos">
+<LabelBlock>
+<SimpleIdentifier Name="t_am_vt"/>
+<LabelGeometry Anchor="NW">
+<Point X="-29" Y="-22"/>
+</LabelGeometry>
+</LabelBlock>
+<GuardActionBlock>
+<Guards>
+<BinaryExpression Operator="==">
+<SimpleIdentifier Name="controle_vermelho"/>
+<IntConstant Value="1"/>
+</BinaryExpression>
+</Guards>
+<Actions>
+<BinaryExpression Operator="=">
+<SimpleIdentifier Name="controle_vermelho"/>
+<IntConstant Value="0"/>
+</BinaryExpression>
+</Actions>
+<LabelGeometry Anchor="NW">
+<Point X="-25" Y="3"/>
+</LabelGeometry>
+</GuardActionBlock>
+</Edge>
+<Edge Source="Vermelho_Veiculos_2" Target="Vermelho_Veiculos_2">
+<LabelBlock>
+<SimpleIdentifier Name="t_vd_am"/>
+<LabelGeometry Anchor="NW">
+<Point X="-7" Y="-28"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="263" Y="21"/>
+</SplineGeometry>
+<GuardActionBlock>
+<Guards>
+<BinaryExpression Operator="==">
+<SimpleIdentifier Name="controle_vermelho"/>
+<IntConstant Value="0"/>
+</BinaryExpression>
+</Guards>
+<Actions>
+<BinaryExpression Operator="=">
+<SimpleIdentifier Name="controle_vermelho"/>
+<IntConstant Value="1"/>
+</BinaryExpression>
+</Actions>
+<LabelGeometry Anchor="NW">
+<Point X="-37" Y="-59"/>
+</LabelGeometry>
+</GuardActionBlock>
+</Edge>
+<Edge Source="Vermelho_Todos" Target="Verde_Veiculos_2">
+<LabelBlock>
+<SimpleIdentifier Name="t_vt_vm"/>
+<LabelGeometry Anchor="NW">
+<Point X="-55" Y="-17"/>
+</LabelGeometry>
+</LabelBlock>
+<GuardActionBlock>
+<Guards>
+<BinaryExpression Operator="==">
+<SimpleIdentifier Name="cont"/>
+<IntConstant Value="1"/>
+</BinaryExpression>
+</Guards>
+<Actions>
+<BinaryExpression Operator="=">
+<SimpleIdentifier Name="cont"/>
+<IntConstant Value="0"/>
+</BinaryExpression>
+</Actions>
+<LabelGeometry Anchor="NW">
+<Point X="-52" Y="3"/>
+</LabelGeometry>
+</GuardActionBlock>
+</Edge>
+<Edge Source="Verde_Veiculos_2" Target="Amarelo_Veiculos_2">
+<LabelBlock>
+<SimpleIdentifier Name="t_vd_am"/>
+<LabelGeometry Anchor="NW">
+<Point X="-33" Y="5"/>
+</LabelGeometry>
+</LabelBlock>
+<GuardActionBlock>
+<Guards>
+<BinaryExpression Operator="==">
+<SimpleIdentifier Name="controle_vermelho"/>
+<IntConstant Value="0"/>
+</BinaryExpression>
+</Guards>
+<Actions>
+<BinaryExpression Operator="=">
+<SimpleIdentifier Name="controle_vermelho"/>
+<IntConstant Value="1"/>
+</BinaryExpression>
+</Actions>
+<LabelGeometry Anchor="NW">
+<Point X="-62" Y="24"/>
+</LabelGeometry>
+</GuardActionBlock>
+</Edge>
+<Edge Source="Amarelo_Veiculos_2" Target="Vermelho_Todos">
+<LabelBlock>
+<SimpleIdentifier Name="t_am_vt"/>
+<LabelGeometry Anchor="NW">
+<Point X="6" Y="-13"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="183" Y="131"/>
+</SplineGeometry>
+<GuardActionBlock>
+<Guards>
+<BinaryExpression Operator="==">
+<SimpleIdentifier Name="controle_vermelho"/>
+<IntConstant Value="1"/>
+</BinaryExpression>
+</Guards>
+<Actions>
+<BinaryExpression Operator="=">
+<SimpleIdentifier Name="controle_vermelho"/>
+<IntConstant Value="0"/>
+</BinaryExpression>
+</Actions>
+<LabelGeometry Anchor="NW">
+<Point X="58" Y="-15"/>
+</LabelGeometry>
+</GuardActionBlock>
+</Edge>
+<Edge Source="Verde_Veiculos_2" Target="Amarelo_Veiculos_2">
+<LabelBlock>
+<SimpleIdentifier Name="botao_pedestre"/>
+<LabelGeometry Anchor="NW">
+<Point X="44" Y="-27"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="182" Y="334"/>
+</SplineGeometry>
+<GuardActionBlock>
+<Actions>
+<BinaryExpression Operator="=">
+<SimpleIdentifier Name="controle_vermelho"/>
+<IntConstant Value="1"/>
+</BinaryExpression>
+</Actions>
+<LabelGeometry Anchor="NW">
+<Point X="32" Y="-11"/>
+</LabelGeometry>
+</GuardActionBlock>
+</Edge>
+<Edge Source="Vermelho_Veiculos_2" Target="Vermelho_Veiculos_2">
+<LabelBlock>
+<SimpleIdentifier Name="botao_pedestre"/>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="-10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="303" Y="81"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="PLANT" Name="Semaforo_Pedestre_2">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="Vermelho_Pedestres">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="144" Y="128"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="-128" Y="-13"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="Verde_Pedestres">
+<PointGeometry>
+<Point X="336" Y="128"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="13" Y="-7"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="Vermelho_Pedestres" Target="Verde_Pedestres">
+<LabelBlock>
+<SimpleIdentifier Name="t_vt_vd"/>
+<LabelGeometry Anchor="NW">
+<Point X="-22" Y="-22"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="240" Y="112"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="Verde_Pedestres" Target="Vermelho_Pedestres">
+<LabelBlock>
+<SimpleIdentifier Name="t_am_vt"/>
+<LabelGeometry Anchor="NW">
+<Point X="-26" Y="5"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="240" Y="144"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="Vermelho_Pedestres" Target="Vermelho_Pedestres">
+<LabelBlock>
+<SimpleIdentifier Name="t_vt_vm"/>
+<LabelGeometry Anchor="NW">
+<Point X="-26" Y="-22"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="143" Y="82"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="Vermelho_Pedestres" Target="Vermelho_Pedestres">
+<LabelBlock>
+<SimpleIdentifier Name="t_am_vt"/>
+<LabelGeometry Anchor="NW">
+<Point X="-25" Y="4"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="170" Y="172"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="Verde_Pedestres" Target="Verde_Pedestres">
+<LabelBlock>
+<SimpleIdentifier Name="botao_pedestre"/>
+<LabelGeometry Anchor="NW">
+<Point X="-44" Y="-25"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="339" Y="79"/>
+</SplineGeometry>
+<GuardActionBlock>
+<Actions>
+<BinaryExpression Operator="=">
+<SimpleIdentifier Name="controle_vermelho"/>
+<IntConstant Value="1"/>
+</BinaryExpression>
+</Actions>
+<LabelGeometry Anchor="NW">
+<Point X="-48" Y="-39"/>
+</LabelGeometry>
+</GuardActionBlock>
+</Edge>
+<Edge Source="Vermelho_Pedestres" Target="Vermelho_Pedestres">
+<LabelBlock>
+<SimpleIdentifier Name="botao_pedestre"/>
+<LabelGeometry Anchor="NW">
+<Point X="-64" Y="13"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="100" Y="162"/>
+</SplineGeometry>
+<GuardActionBlock>
+<Actions>
+<BinaryExpression Operator="=">
+<SimpleIdentifier Name="controle_vermelho"/>
+<IntConstant Value="1"/>
+</BinaryExpression>
+</Actions>
+<LabelGeometry Anchor="NW">
+<Point X="-70" Y="30"/>
+</LabelGeometry>
+</GuardActionBlock>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<VariableComponent Name="controle_vermelho">
+<VariableRange><BinaryExpression Operator="..">
+<IntConstant Value="0"/>
+<IntConstant Value="1"/>
+</BinaryExpression>
+</VariableRange>
+<VariableInitial><BinaryExpression Operator="==">
+<SimpleIdentifier Name="controle_vermelho"/>
+<IntConstant Value="0"/>
+</BinaryExpression>
+</VariableInitial>
+</VariableComponent>
+<VariableComponent Name="cont">
+<VariableRange><BinaryExpression Operator="..">
+<IntConstant Value="0"/>
+<IntConstant Value="1"/>
+</BinaryExpression>
+</VariableRange>
+<VariableInitial><BinaryExpression Operator="==">
+<SimpleIdentifier Name="cont"/>
+<IntConstant Value="0"/>
+</BinaryExpression>
+</VariableInitial>
+</VariableComponent>
+<VariableComponent Name="tempo_em_verde">
+<VariableRange><BinaryExpression Operator="..">
+<IntConstant Value="0"/>
+<IntConstant Value="35"/>
+</BinaryExpression>
+</VariableRange>
+<VariableInitial><BinaryExpression Operator="==">
+<SimpleIdentifier Name="tempo_em_verde"/>
+<IntConstant Value="0"/>
+</BinaryExpression>
+</VariableInitial>
+</VariableComponent>
+<VariableComponent Name="tempo_reduzido">
+<VariableRange><BinaryExpression Operator="..">
+<IntConstant Value="5"/>
+<IntConstant Value="5"/>
+</BinaryExpression>
+</VariableRange>
+<VariableInitial><BinaryExpression Operator="==">
+<SimpleIdentifier Name="tempo_reduzido"/>
+<IntConstant Value="5"/>
+</BinaryExpression>
+</VariableInitial>
+</VariableComponent>
+<SimpleComponent Kind="SUPERVISOR" Name="sup">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="S:0">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="168" Y="151"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S:1">
+<PointGeometry>
+<Point X="273" Y="120"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S:2">
+<PointGeometry>
+<Point X="62" Y="185"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S:3">
+<PointGeometry>
+<Point X="112" Y="244"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S:4">
+<PointGeometry>
+<Point X="229" Y="57"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="S:0" Target="S:1">
+<LabelBlock>
+<SimpleIdentifier Name="t_vt_vd"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="227" Y="138"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S:0" Target="S:2">
+<LabelBlock>
+<SimpleIdentifier Name="t_vt_vm"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="108" Y="165"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S:1" Target="S:4">
+<LabelBlock>
+<SimpleIdentifier Name="botao_pedestre"/>
+<SimpleIdentifier Name="t_vd_am"/>
+<LabelGeometry Anchor="NW">
+<Point X="23" Y="2"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="258" Y="83"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S:2" Target="S:3">
+<LabelBlock>
+<SimpleIdentifier Name="botao_pedestre"/>
+<SimpleIdentifier Name="t_vd_am"/>
+<LabelGeometry Anchor="NW">
+<Point X="-59" Y="29"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="79" Y="220"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S:3" Target="S:0">
+<LabelBlock>
+<SimpleIdentifier Name="t_am_vt"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="140" Y="204"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S:4" Target="S:0">
+<LabelBlock>
+<SimpleIdentifier Name="t_am_vt"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="198" Y="97"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+</ComponentList>
+</Module>
